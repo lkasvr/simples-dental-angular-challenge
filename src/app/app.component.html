@@ -36,8 +36,10 @@
         </defs>
       </svg>
       <h1>Hello, {{ title }}</h1>
+      <button mat-button color="warn">Accent</button>
       <p>Congratulations! Your app is running. 🎉</p>
     </div>
+    <mat-slide-toggle color="primary" (change)="toggleTheme($event)">Slide me!</mat-slide-toggle>
     <div class="divider" role="separator" aria-label="Divider"></div>
     <div class="right-side">
       <div class="pill-group">
