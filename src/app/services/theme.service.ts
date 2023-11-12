@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { BehaviorSubject } from 'rxjs';
 
 export type colorSchema = 'primary' | 'accent' | 'warn';
@@ -32,7 +33,11 @@ export class ThemeService {
     if (value !== this._colorSchema.value) this._colorSchema.next(value);
   };
 
-  toggle() {
+  toggle(value: boolean) {
+    if (!value) { this.colorSchema = 'primary'; } else {
+       this.colorSchema = 'warn';
+    }
+    console.log('themeService this.colorSchema', this.colorSchema);
     this._isDark = !this._isDark;
     for (const darkCssClass of this._darkCssClasses) document.body.classList.toggle(darkCssClass);
   }

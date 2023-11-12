@@ -5,6 +5,9 @@
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
       <mat-icon>menu</mat-icon>
     </button>
+
+    <mat-slide-toggle [color]="colorSchema" (change)="toggledTheme($event.checked)">Slide
+      me!</mat-slide-toggle>
   </mat-toolbar-row>
 
   <mat-toolbar-row>
