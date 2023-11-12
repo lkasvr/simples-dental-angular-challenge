@@ -1,13 +1,15 @@
 <mat-toolbar color="primary">
-  <mat-toolbar-row>
-    <span>My App</span>
+  <mat-toolbar-row class="top">
+    <span>
+      <brand-logo></brand-logo>
+    </span>
+
+    <mat-slide-toggle class="slide-toggle-theme" [color]="colorSchema" (change)="toggledTheme()"></mat-slide-toggle>
+
     <span class="example-spacer"></span>
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
       <mat-icon>menu</mat-icon>
     </button>
-
-    <mat-slide-toggle class="slide-toggle-theme" [color]="colorSchema" (change)="toggledTheme()">Slide
-      me!</mat-slide-toggle>
   </mat-toolbar-row>
 
   <mat-toolbar-row>

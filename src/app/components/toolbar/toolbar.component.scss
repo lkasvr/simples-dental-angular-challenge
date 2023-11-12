@@ -1,3 +1,11 @@
-.mat-toolbar-row {
+.mat-toolbar {
   width: 100vw;
+}
+
+.mat-toolbar-row {
+  justify-content: space-between;
+}
+
+.mat-toolbar-row.top {
+  padding-top: 0.8rem;
 }

@@ -48,7 +48,7 @@ $app-warn: mat.define-palette(mat.$red-palette);
 $dark-theme: mat.define-dark-theme((
   color: (
     // arguments: lighter, darker, text
-    primary: mat.define-palette($primary-palette, 500, 900, 200),
+    primary: mat.define-palette($primary-palette, 400, 700, 200),
     accent: mat.define-palette($accent-palette, 500, 900, 50),
     warn: $app-warn,
   ),
@@ -57,7 +57,7 @@ $dark-theme: mat.define-dark-theme((
 $light-theme: mat.define-light-theme((
   color: (
     // arguments: lighter, darker, text
-    primary: mat.define-palette($primary-palette, 300, 600, 100),
+    primary: mat.define-palette($primary-palette, 100, 600, 100),
     accent: mat.define-palette($accent-palette, 400, 800, 50),
     warn: $app-warn,
   ),
