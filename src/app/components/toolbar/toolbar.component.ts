@@ -15,9 +15,9 @@ import { colorSchema } from '../../services/theme.service';
 })
 export class ToolbarComponent {
   @Input() colorSchema!: colorSchema;
-  @Output() toggleTheme = new EventEmitter<boolean>();
+  @Output() toggleTheme = new EventEmitter();
 
-  toggledTheme(checked: boolean) {
-    this.toggleTheme.emit(checked);
+  toggledTheme() {
+    this.toggleTheme.emit();
   }
 }

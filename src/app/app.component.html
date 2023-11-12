@@ -1,4 +1,5 @@
-<header><app-toolbar [colorSchema]="colorSchema" (toggleTheme)="onToggleTheme($event)"></app-toolbar></header>
+<header><app-toolbar *ngIf="colorSchema" [colorSchema]="colorSchema" (toggleTheme)="onToggleTheme()"></app-toolbar>
+</header>
 <main class="main">
   <div class="content">
     <div class="left-side">

@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
     this.themeService.colorSchema$.subscribe((colorSchema: colorSchema) => this.colorSchema = colorSchema);
   }
 
-  onToggleTheme(checked: boolean): void {
-    this.themeService.toggle(checked);
+  onToggleTheme(): void {
+    this.themeService.toggle();
   }
 }

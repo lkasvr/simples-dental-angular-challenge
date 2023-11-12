@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ToolbarComponent } from './toolbar.component';
 
-describe('ToolbarComponent', () => {
+describe('Initiating Components', () => {
   let component: ToolbarComponent;
   let fixture: ComponentFixture<ToolbarComponent>;
 
@@ -10,14 +10,24 @@ describe('ToolbarComponent', () => {
     await TestBed.configureTestingModule({
       imports: [ToolbarComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(ToolbarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should create ToolbarComponent', () => expect(component).toBeTruthy());
+
+  it('should call toggleTheme emitter', () => {
+    spyOn(component.toggleTheme, 'emit');
+
+    const nativeEl = fixture.nativeElement;
+    const slideToggle = nativeEl.querySelector('.slide-toggle-theme button');
+    slideToggle.dispatchEvent(new Event('click'));
+
+    fixture.detectChanges();
+
+    expect(component.toggleTheme.emit).toHaveBeenCalled();
   });
 });

@@ -33,11 +33,7 @@ export class ThemeService {
     if (value !== this._colorSchema.value) this._colorSchema.next(value);
   };
 
-  toggle(value: boolean) {
-    if (!value) { this.colorSchema = 'primary'; } else {
-       this.colorSchema = 'warn';
-    }
-    console.log('themeService this.colorSchema', this.colorSchema);
+  toggle() {
     this._isDark = !this._isDark;
     for (const darkCssClass of this._darkCssClasses) document.body.classList.toggle(darkCssClass);
   }
