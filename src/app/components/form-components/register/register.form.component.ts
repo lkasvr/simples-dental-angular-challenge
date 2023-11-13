@@ -18,7 +18,7 @@ import { AuthService } from '../../../services/auth-service/auth-service';
 export class RegisterFormComponent {
   private authService = inject(AuthService);
 
-  passwordRegExp = /^(?!.*(\d)\1{2,})((?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-])).{8,}$/;
+  passwordRegExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-])(?!.*(\d)\1{2,}).{8,}$/;
   passwordHide = true;
 
   registerForm = new FormGroup({

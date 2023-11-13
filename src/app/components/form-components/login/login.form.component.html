@@ -1,4 +1,4 @@
-<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
   <mat-form-field class="form-field">
     <mat-label>Enter your email</mat-label>
     <input matInput placeholder="pat@example.com" formControlName="email" required>
@@ -11,18 +11,11 @@
       [attr.aria-pressed]="passwordHide">
       <mat-icon>{{passwordHide ? 'visibility_off' : 'visibility'}}</mat-icon>
     </button>
-    <mat-error *ngIf="password?.invalid">{{getErrorMessage(password, 'password')}}</mat-error>
-  </mat-form-field>
-  <mat-form-field class="form-field">
-    <mat-label for="toConfirmePassword">Confirme sua senha</mat-label>
-    <input id="toConfirmePassword" matInput [type]="passwordHide ? 'password' : 'text'"
-      formControlName="toConfirmePassword">
-    <mat-error *ngIf="toConfirmePassword?.invalid">{{getErrorMessage(toConfirmePassword,
-      'toConfirmePassword')}}</mat-error>
+    <mat-error *ngIf="password?.invalid">{{getErrorMessage(password)}}</mat-error>
   </mat-form-field>
   <div class="btn-container">
-    <button mat-raised-button type="submit" [disabled]="!registerForm.valid" extended>
-      Cadastrar
+    <button mat-raised-button type="submit" [disabled]="!loginForm.valid" extended>
+      Entrar
     </button>
   </div>
 </form>

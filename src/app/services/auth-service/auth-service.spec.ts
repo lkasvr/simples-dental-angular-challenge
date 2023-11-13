@@ -11,6 +11,7 @@ describe('AuthService', () => {
     service = TestBed.inject(AuthService);
     userInfoMock = { email: 'teste@test.com', password: '1234' };
     service.registerUser(userInfoMock);
+    service.signOut();
   });
 
   it('should be created', () => expect(service).toBeTruthy());
@@ -48,23 +49,19 @@ describe('AuthService', () => {
 
   it('should get session from a logged user', () => {
     const userSession = service.signIn(userInfoMock);
-    expect(service.getUserSession((userSession as UserSession).user.id)).toEqual(userSession);
+    expect(service.getUserSession()).toEqual(userSession);
   });
 
   it('should not get a session for an unlogged user', () => {
-    const userSession = service.signIn(userInfoMock) as UserSession;
-    service.signOut(userSession.user.id);
-    expect(service.getUserSession(userSession.user.id)).toEqual('Sessão de usuário não encontrada');
+    expect(service.getUserSession()).toEqual('Sessão de usuário não encontrada');
   });
 
-  it('should get true for an logged user', () => {
-    const userSession = service.signIn(userInfoMock) as UserSession;
-    expect(service.isAuthenticated(userSession.user.id)).toBeTrue();
+  it('should return true for a logged user', () => {
+    service.signIn(userInfoMock);
+    expect(service.isAuthenticated()).toBeTrue();
   });
 
-  it('should get false for a unlogged user', () => {
-    const userSession = service.signIn(userInfoMock) as UserSession;
-    service.signOut(userSession.user.id);
-    expect(service.isAuthenticated(userSession.user.id)).toBeFalse();
+  it('should return false for an unlogged user', () => {
+    expect(service.isAuthenticated()).toBeFalse();
   });
 });

@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { BehaviorSubject } from 'rxjs';
 
 export type colorSchema = 'primary' | 'accent' | 'warn';
