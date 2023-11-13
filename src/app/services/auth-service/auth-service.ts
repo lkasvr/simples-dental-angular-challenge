@@ -43,12 +43,12 @@ export class AuthService {
 
   signIn(userCredentials: UserInfo): UserSession | string {
     try {
-      const { email, password } = userCredentials;
+      const { password } = userCredentials;
       const userFromStorage = localStorage.getItem(userCredentials.email);
-      if (!userFromStorage) throw new Error('Usuário não encontrado');
+      if (!userFromStorage) throw new Error('Credenciais incorretas');
 
       const user: User = JSON.parse(userFromStorage);
-      if (email !== user.email && !this.verifyPassword(password, user.password))
+      if (!this.verifyPassword(password, user.password))
         throw new Error('Credenciais incorretas');
 
       return this.generateSession(user);
@@ -58,12 +58,8 @@ export class AuthService {
     }
   }
 
-  verifyPassword(typedPassword: string, password: string): boolean {
-    return this.hashPassword(typedPassword) === password;
-  }
-
-  hashPassword(password: string): string {
-    return CryptoJS.SHA256(password).toString(CryptoJS.enc.Hex);
+  signOut(userId: string): void {
+    localStorage.removeItem(userId);
   }
 
   private generateSession(user: User): UserSession | string {
@@ -86,10 +82,10 @@ export class AuthService {
   getUserSession(userId: string): UserSession | string {
     try {
       const sessionItem = localStorage.getItem(userId);
-      if (!sessionItem) throw new Error('Sessão de usuário inexistente');
+      if (!sessionItem) throw new Error('Sessão de usuário não encontrada');
 
       const session: UserSession = JSON.parse(sessionItem);
-      if (session.expireAt > Date.now()) throw new Error('Sessão de usuário expirada')
+      if (Date.now() > session.expireAt) throw new Error('Sessão de usuário expirada')
       return session
     } catch (error) {
       if (error instanceof Error) return error.message;
@@ -100,5 +96,13 @@ export class AuthService {
   isAuthenticated(userId: string): boolean {
     const session = this.getUserSession(userId);
     return typeof session === 'string' ? false : Boolean(session.user.isAuthenticated);
+  }
+
+  verifyPassword(typedPassword: string, password: string): boolean {
+    return this.hashPassword(typedPassword) === password;
+  }
+
+  hashPassword(password: string): string {
+    return CryptoJS.SHA256(password).toString(CryptoJS.enc.Hex);
   }
 }
