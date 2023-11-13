@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
-import { ThemeService } from './services/theme.service';
+import { ThemeService } from './services/theme-service/theme.service';
 
 describe('AppComponent', () => {
   let app: AppComponent;

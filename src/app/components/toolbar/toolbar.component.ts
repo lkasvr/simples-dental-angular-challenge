@@ -4,7 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { colorSchema } from '../../services/theme.service';
+import { colorSchema } from '../../services/theme-service/theme.service';
 import { BrandLogoComponent } from '../brand-logo/brand-logo.component';
 
 @Component({

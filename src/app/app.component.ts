@@ -1,15 +1,16 @@
-import { Component, OnInit, inject  } from '@angular/core';
+import { Component, OnInit  } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
-import { ThemeService, colorSchema } from './services/theme.service';
+import { ThemeService, colorSchema } from './services/theme-service/theme.service';
+import { RegisterFormComponent } from './components/form-components/register/register.form.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, MatButtonModule, ToolbarComponent],
+  imports: [CommonModule, RouterOutlet, MatButtonModule, ToolbarComponent, RegisterFormComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   providers: [ThemeService]
