@@ -6,6 +6,6 @@ import { GalleryComponent } from './pages/gallery/gallery.component';
 
 export const routes: Routes = [
   { path: '', component: GalleryComponent },
-  { path: 'register', component: RegisterComponent, canActivate: [canActivateRoute] },
+  { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent, canActivate: [cantWhenAuthenticated] },
 ];

@@ -108,7 +108,11 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
-    if (typeof this.getUserSession() === 'string') return false;
+    if (typeof this.getUserSession() === 'string') {
+      //this.router.navigate(['/login']);
+      return false;
+    }
+
     return true;
   }
 
