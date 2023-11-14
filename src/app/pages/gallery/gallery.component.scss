@@ -1,0 +1,17 @@
+div.button-container {
+  width: 100%;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 5rem;
+}
+
+section.gallery {
+  overflow-y: auto;
+  margin-top: 1rem;
+  padding: 0 1.8rem 0 1.8rem;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}

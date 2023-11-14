@@ -1,1 +1,13 @@
-<p>gallery works!</p>
+<div class="button-container">
+  <button mat-fab (click)="prevPhoto()" aria-label="Example icon button with a home icon">
+    <mat-icon color="primary">keyboard_arrow_left</mat-icon>
+  </button>
+  <button mat-fab (click)="nextPhoto()" aria-label="Example icon button with a home icon">
+    <mat-icon color="primary">keyboard_arrow_right</mat-icon>
+  </button>
+</div>
+<section class="gallery">
+  <section class="gallery">
+    <image-card *ngIf="currentPhoto" [photo]="currentPhoto" [photoIndex]="currentPhotoIndex"></image-card>
+  </section>
+</section>

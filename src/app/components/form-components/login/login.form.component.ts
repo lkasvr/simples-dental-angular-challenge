@@ -10,7 +10,15 @@ import { MatButtonModule } from '@angular/material/button';
 @Component({
   selector: 'form-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormsModule, MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatButtonModule
+  ],
   templateUrl: './login.form.component.html',
   styleUrl: './login.form.component.scss',
   providers: [AuthService]
