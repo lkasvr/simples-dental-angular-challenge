@@ -1,78 +1,44 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Album, AlbumsService, Photo } from '../../services/api/albums.service';
-import { Observable, switchMap } from 'rxjs';
+import { Album } from '../../services/api/albums-service/albums.service';
 import { ImageCardComponent } from '../../components/image-card/image-card.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-
-export interface FilteredPhoto extends Photo {
-  userId: number;
-  albumTitle: string;
-}
+import { RouterModule } from '@angular/router';
+import { AlbumsDataSharedService, FilteredPhoto } from '../../services/data-shared/albums/albums-data-shared.service';
 
 @Component({
   selector: 'app-gallery',
   standalone: true,
-  imports: [CommonModule, ImageCardComponent, MatIconModule, MatButtonModule],
+  imports: [CommonModule, RouterModule, MatIconModule, MatButtonModule, ImageCardComponent],
   templateUrl: './gallery.component.html',
-  styleUrl: './gallery.component.scss'
+  styleUrls: ['./gallery.component.scss'],
+  providers: [AlbumsDataSharedService]
 })
-export class GalleryComponent implements OnInit{
-  private loadData$!: Observable<Photo[]>;
-
+export class GalleryComponent implements OnInit {
   private _PHOTOS_QTY = 10;
-  private albums: Album[] = [];
-  filteredPhotos: FilteredPhoto[] = [];
+  private _albums: Album[] = [];
+  private _filteredPhotos: FilteredPhoto[] = [];
 
   private _currentAlbumIndex = 0;
   currentPhotoIndex = 0;
 
-  constructor(private albumsService: AlbumsService) { }
+  constructor(
+    private _albumsDataSharedService: AlbumsDataSharedService
+  ) { }
 
   ngOnInit(): void {
-    this.loadData();
+    this._albumsDataSharedService.filteredPhotos$.subscribe(photos => this._filteredPhotos = this._albumsDataSharedService.filterPhotos(photos));
   }
 
-  loadData() {
-    this.loadData$ = this.albumsService.getAlbums().pipe(
-      switchMap((albums) => {
-        this.albums = albums;
-        return this.albumsService.getPhotos();
-      })
-    );
-
-    this.loadData$.subscribe(photos => this.filterPhotos(photos));
-  }
-
-  private filterPhotos(photos: Photo[]) {
-    let counterAlbums = 1;
-    let counterPhotos = 0;
-
-    this.filteredPhotos = photos.reduce((acc: FilteredPhoto[], photo,) => {
-      if (counterAlbums === photo.albumId && counterPhotos < this._PHOTOS_QTY) {
-        const albumTitle = this.albums.find(album => album.id === photo.albumId)?.title ?? '';
-        const userId = this.albums.find(album => album.id === photo.albumId)?.userId ?? 0;
-
-        acc.push({ albumTitle, userId, ...photo });
-        counterPhotos++;
-      } else if (counterAlbums !== photo.albumId) {
-        counterAlbums = photo.albumId;
-        counterPhotos = 0;
-      }
-
-      return acc;
-    }, []);
-  }
-
-  get currentPhoto(): FilteredPhoto | undefined {
-    return this.filteredPhotos[this.currentPhotoIndex];
+  get currentPhoto(): FilteredPhoto {
+    return this._filteredPhotos[this.currentPhotoIndex];
   }
 
   nextPhoto() {
-    if (this.currentPhotoIndex < this.filteredPhotos.length - 1) {
+    if (this.currentPhotoIndex < this._filteredPhotos.length - 1) {
       this.currentPhotoIndex++;
-    } else if (this._currentAlbumIndex < this.albums.length - 1) {
+    } else if (this._currentAlbumIndex < this._albums.length - 1) {
       this._currentAlbumIndex++;
       this.currentPhotoIndex = 0;
     }
@@ -86,9 +52,4 @@ export class GalleryComponent implements OnInit{
       this.currentPhotoIndex = this._PHOTOS_QTY - 1;
     }
   }
-
-  showAlbum(albumId: number) {
-    return this.filteredPhotos.filter(photo => photo.albumId === albumId);
-  }
-
 }

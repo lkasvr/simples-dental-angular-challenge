@@ -44,14 +44,14 @@ $app-warn: mat.define-palette(mat.$red-palette);
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
 $dark-theme: mat.define-dark-theme((color: ( // arguments: lighter, darker, text
-        primary: mat.define-palette($primary-palette, 400, 700, 200),
+        primary: mat.define-palette($primary-palette, 500, 700, 200),
         accent: mat.define-palette($accent-palette, 500, 900, 50),
         warn: $app-warn,
       ),
     ));
 
 $light-theme: mat.define-light-theme((color: ( // arguments: lighter, darker, text
-        primary: mat.define-palette($primary-palette, 100, 600, 100),
+        primary: mat.define-palette($primary-palette, 200, 600, 100),
         accent: mat.define-palette($accent-palette, 400, 800, 50),
         warn: $app-warn,
       ),

@@ -1,7 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
-import { FilteredPhoto } from '../../pages/gallery/gallery.component';
 
 @Component({
   selector: 'image-card',
@@ -10,11 +9,10 @@ import { FilteredPhoto } from '../../pages/gallery/gallery.component';
   templateUrl: './image-card.component.html',
   styleUrl: './image-card.component.scss'
 })
-export class ImageCardComponent implements OnInit {
-  @Input() photo!: FilteredPhoto;
+export class ImageCardComponent {
+  @Input() albumId!: number;
+  @Input() photoId!: number;
+  @Input() title!: string;
   @Input() photoIndex!: number;
-
-  ngOnInit(): void {
-      console.log(this.photo)
-  }
+  @Input() url!: string;
 }

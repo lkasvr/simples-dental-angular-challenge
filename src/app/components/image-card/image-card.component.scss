@@ -5,11 +5,17 @@
   --link-icon-opacity: 0;
   position: relative;
   border-radius: 16px;
-  box-shadow: none;
   background: #fff;
   transform-origin: center;
   transition: all 0.4s ease-in-out;
   overflow: hidden;
+
+  --img-scale: 1.1;
+  --title-color: #28666e;
+  --link-icon-translate: 0;
+  --link-icon-opacity: 1;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+    rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
 
   img {
     width: 100%;
@@ -28,14 +34,14 @@
     transition: color 0.3s ease-out;
   }
 
-  a {
+  div.read-more {
     display: inline-flex;
     align-items: center;
     text-decoration: none;
     color: #28666e;
   }
 
-  a .icon {
+  div.read-more .icon {
     min-width: 24px;
     width: 24px;
     height: 24px;
@@ -45,11 +51,11 @@
     transition: all 0.3s;
   }
 
-  a:focus {
+  div.read-more:focus {
     outline: 1px dotted #28666e;
   }
 
-  a::after {
+  div.read-more::after {
     position: absolute;
     inset-block: 0;
     inset-inline: 0;
@@ -57,13 +63,6 @@
     content: "";
   }
 
-  & {
-    --img-scale: 1.1;
-    --title-color: #28666e;
-    --link-icon-translate: 0;
-    --link-icon-opacity: 1;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
-  }
 }
 
 .article-body {

@@ -1,0 +1,6 @@
+<section class="gallery">
+  <section class="gallery">
+    <image-card *ngFor="let photo of album; index as i; first as isFirst" [photoIndex]="i" [albumId]="photo.albumId"
+      [title]="photo.title" [url]="photo.url"></image-card>
+  </section>
+</section>

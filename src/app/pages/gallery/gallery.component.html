@@ -6,8 +6,14 @@
     <mat-icon color="primary">keyboard_arrow_right</mat-icon>
   </button>
 </div>
+
 <section class="gallery">
-  <section class="gallery">
-    <image-card *ngIf="currentPhoto" [photo]="currentPhoto" [photoIndex]="currentPhotoIndex"></image-card>
-  </section>
+  <image-card *ngIf="currentPhoto" [photoIndex]="currentPhotoIndex" [albumId]="currentPhoto.albumId"
+    [title]="currentPhoto.title" [url]="currentPhoto.thumbnailUrl"
+    [routerLink]="['/albums', currentPhoto.albumId]"></image-card>
 </section>
+
+<!--
+(click)="showAlbum(currentPhoto.albumId)"
+routerLink="/detail/{{currentPhoto.albumId}}"
+-->
