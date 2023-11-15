@@ -20,7 +20,7 @@ describe('ToolbarComponent', () => {
   it('should create ToolbarComponent', () => expect(component).toBeTruthy());
 
   it('should call toggleTheme emitter', () => {
-    spyOn(component.toggleTheme, 'emit');
+    spyOn(component.toggleThemeEmitter, 'emit');
 
     const nativeEl = fixture.nativeElement;
     const slideToggle = nativeEl.querySelector('.slide-toggle-theme button');
@@ -28,6 +28,6 @@ describe('ToolbarComponent', () => {
 
     fixture.detectChanges();
 
-    expect(component.toggleTheme.emit).toHaveBeenCalled();
+    expect(component.toggleThemeEmitter).toHaveBeenCalled();
   });
 });

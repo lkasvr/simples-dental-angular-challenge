@@ -85,10 +85,10 @@ export class AlbumsDataSharedService {
 
   filterPhotos(photos: Photo[]): FilteredPhoto[] {
     let counterAlbums = 1;
-    let counterPhotos = 0;
+    let counterPhotos = 1;
 
     return photos.reduce((acc: FilteredPhoto[], photo) => {
-      if (counterAlbums === photo.albumId && counterPhotos < this._PHOTOS_QTY) {
+      if (counterAlbums === photo.albumId && counterPhotos <= this._PHOTOS_QTY) {
         const albumTitle = this.albums.find(album => album.id === photo.albumId)?.title ?? '';
         const userId = this.albums.find(album => album.id === photo.albumId)?.userId ?? 0;
 

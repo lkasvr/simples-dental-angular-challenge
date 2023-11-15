@@ -13,6 +13,6 @@ export class ImageCardComponent {
   @Input() albumId!: number;
   @Input() photoId!: number;
   @Input() title!: string;
-  @Input() photoIndex!: number;
+  @Input() photoNumber!: number;
   @Input() url!: string;
 }

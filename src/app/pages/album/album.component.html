@@ -1,6 +1,6 @@
 <section class="gallery">
-  <section class="gallery">
-    <image-card *ngFor="let photo of album; index as i; first as isFirst" [photoIndex]="i" [albumId]="photo.albumId"
-      [title]="photo.title" [url]="photo.url"></image-card>
-  </section>
+  <span *ngIf="albumTitle"><b>Album:</b> {{albumTitle}}</span>
+  <mat-divider></mat-divider>
+  <image-card *ngFor="let photo of album; index as i; first as isFirst" [photoNumber]="i + 1" [albumId]="photo.albumId"
+    [title]="photo.title" [url]="photo.url"></image-card>
 </section>

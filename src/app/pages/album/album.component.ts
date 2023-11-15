@@ -1,16 +1,16 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { MatDividerModule } from '@angular/material/divider';
 import { AlbumsDataSharedService, FilteredPhoto } from '../../services/data-shared/albums/albums-data-shared.service';
 import { ImageCardComponent } from '../../components/image-card/image-card.component';
-import { AlbumsService, Photo } from '../../services/api/albums-service/albums.service';
-import { switchMap } from 'rxjs/operators';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { AlbumsService } from '../../services/api/albums-service/albums.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'album',
   standalone: true,
-  imports: [CommonModule, ImageCardComponent],
+  imports: [CommonModule, ImageCardComponent, MatDividerModule],
   templateUrl: './album.component.html',
   styleUrl: './album.component.scss',
   providers: [AlbumsService, AlbumsDataSharedService]
@@ -18,6 +18,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class AlbumComponent implements OnInit {
 
   private _album$ = new BehaviorSubject<FilteredPhoto[]>([]);;
+  albumTitle: string = '';
 
   constructor(
     private _activatedRoute: ActivatedRoute,
@@ -27,7 +28,9 @@ export class AlbumComponent implements OnInit {
   ngOnInit() {
     const albumId = this._activatedRoute.snapshot.paramMap.get('id');
     this._albumsDataSharedService.filteredPhotos$.subscribe(photos => this._album$.next(photos.filter(photo => photo.albumId === Number(albumId))));
+    this.albumTitle = this.album[0].albumTitle;
   }
+
 
   get album() {
     return this._album$.value;

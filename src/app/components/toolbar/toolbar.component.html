@@ -1,18 +1,43 @@
 <mat-toolbar color="primary">
-  <mat-toolbar-row class="top">
+  <mat-toolbar-row>
     <span>
       <brand-logo></brand-logo>
     </span>
 
-    <mat-slide-toggle class="slide-toggle-theme" [color]="colorSchema" (change)="toggledTheme()"></mat-slide-toggle>
+    <div class="slide-toggle-theme-wrapper">
+      <mat-slide-toggle class="slide-toggle-theme icon-slide-toggle" [color]="colorSchema" (change)="toggleTheme()"
+        #darkModeSwitch>
+      </mat-slide-toggle>
+    </div>
 
-    <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>menu</mat-icon>
     </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="/albums">
+        <mat-icon>photo</mat-icon>
+        <span>Gallery</span>
+      </button>
+      <button mat-menu-item *ngIf="!authService.isAuthenticated()" routerLink="/login">
+        <mat-icon>login</mat-icon>
+        <span>Entrar</span>
+      </button>
+      <button mat-menu-item *ngIf="!authService.isAuthenticated()" routerLink="/register">
+        <mat-icon>assignment_ind</mat-icon>
+        <span>Cadastrar-se</span>
+      </button>
+      <button mat-menu-item *ngIf="authService.isAuthenticated()" (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        <span>Sair</span>
+      </button>
+    </mat-menu>
   </mat-toolbar-row>
+</mat-toolbar>
 
-  <mat-toolbar-row>
+<!--
+  <mat-icon>photo_album</mat-icon>
+
+    <mat-toolbar-row>
     <span>Second Line</span>
     <span class="example-spacer"></span>
     <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
@@ -22,4 +47,4 @@
       <mat-icon>share</mat-icon>
     </button>
   </mat-toolbar-row>
-</mat-toolbar>
+-->

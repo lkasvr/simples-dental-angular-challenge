@@ -44,14 +44,14 @@ $app-warn: mat.define-palette(mat.$red-palette);
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
 $dark-theme: mat.define-dark-theme((color: ( // arguments: lighter, darker, text
-        primary: mat.define-palette($primary-palette, 500, 700, 200),
-        accent: mat.define-palette($accent-palette, 500, 900, 50),
+        primary: mat.define-palette($primary-palette, 200, 600, 900),
+        accent: mat.define-palette($accent-palette, 500, 900, 100),
         warn: $app-warn,
       ),
     ));
 
 $light-theme: mat.define-light-theme((color: ( // arguments: lighter, darker, text
-        primary: mat.define-palette($primary-palette, 200, 600, 100),
+        primary: mat.define-palette($primary-palette, 50, 600, 100),
         accent: mat.define-palette($accent-palette, 400, 800, 50),
         warn: $app-warn,
       ),
@@ -71,5 +71,9 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  overflow: hidden;
+  background: mat.get-theme-color($light-theme, primary, 50);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-flow: row wrap;
 }

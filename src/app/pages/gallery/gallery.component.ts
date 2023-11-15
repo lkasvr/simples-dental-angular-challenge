@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Album } from '../../services/api/albums-service/albums.service';
 import { ImageCardComponent } from '../../components/image-card/image-card.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -17,11 +16,11 @@ import { AlbumsDataSharedService, FilteredPhoto } from '../../services/data-shar
 })
 export class GalleryComponent implements OnInit {
   private _PHOTOS_QTY = 10;
-  private _albums: Album[] = [];
   private _filteredPhotos: FilteredPhoto[] = [];
 
-  private _currentAlbumIndex = 0;
-  currentPhotoIndex = 0;
+  private fromPhoto = 0;
+  private toPhoto = this._PHOTOS_QTY;
+  currentPhotoNumber = 1;
 
   constructor(
     private _albumsDataSharedService: AlbumsDataSharedService
@@ -31,25 +30,30 @@ export class GalleryComponent implements OnInit {
     this._albumsDataSharedService.filteredPhotos$.subscribe(photos => this._filteredPhotos = this._albumsDataSharedService.filterPhotos(photos));
   }
 
-  get currentPhoto(): FilteredPhoto {
-    return this._filteredPhotos[this.currentPhotoIndex];
+  get filteredPhotos(): FilteredPhoto[] {
+    return this._filteredPhotos.slice(this.fromPhoto, this.toPhoto);
   }
 
   nextPhoto() {
-    if (this.currentPhotoIndex < this._filteredPhotos.length - 1) {
-      this.currentPhotoIndex++;
-    } else if (this._currentAlbumIndex < this._albums.length - 1) {
-      this._currentAlbumIndex++;
-      this.currentPhotoIndex = 0;
+    if (this.toPhoto < this._filteredPhotos.length - 1) {
+      this.fromPhoto += this._PHOTOS_QTY + 1;
+      this.toPhoto += this._PHOTOS_QTY + 1;
+    } else {
+      this.fromPhoto = 0;
+      this.toPhoto = this._PHOTOS_QTY;
     }
   }
 
   prevPhoto() {
-    if (this.currentPhotoIndex > 0) {
-      this.currentPhotoIndex--;
-    } else if (this._currentAlbumIndex > 0) {
-      this._currentAlbumIndex--;
-      this.currentPhotoIndex = this._PHOTOS_QTY - 1;
+    if (this.fromPhoto === 0) {
+      this.toPhoto = this._filteredPhotos.length - 1;
+      this.fromPhoto = (this._filteredPhotos.length - 1) - this._PHOTOS_QTY;
+    } else {
+      this.fromPhoto -= this._PHOTOS_QTY + 1;
+      this.toPhoto -= this._PHOTOS_QTY + 1;
     }
+
+    if (this.fromPhoto < 0) this.fromPhoto = 0;
   }
+
 }

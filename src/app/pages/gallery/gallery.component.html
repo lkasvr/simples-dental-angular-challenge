@@ -1,19 +1,15 @@
-<div class="button-container">
-  <button mat-fab (click)="prevPhoto()" aria-label="Example icon button with a home icon">
-    <mat-icon color="primary">keyboard_arrow_left</mat-icon>
-  </button>
-  <button mat-fab (click)="nextPhoto()" aria-label="Example icon button with a home icon">
-    <mat-icon color="primary">keyboard_arrow_right</mat-icon>
-  </button>
-</div>
-
 <section class="gallery">
-  <image-card *ngIf="currentPhoto" [photoIndex]="currentPhotoIndex" [albumId]="currentPhoto.albumId"
-    [title]="currentPhoto.title" [url]="currentPhoto.thumbnailUrl"
-    [routerLink]="['/albums', currentPhoto.albumId]"></image-card>
-</section>
+  <div class="button-container">
+    <button mat-fab (click)="prevPhoto()" aria-label="Example icon button with a home icon">
+      <mat-icon color="primary">keyboard_arrow_left</mat-icon>
+    </button>
+    <button mat-fab (click)="nextPhoto()" aria-label="Example icon button with a home icon">
+      <mat-icon color="primary">keyboard_arrow_right</mat-icon>
+    </button>
+  </div>
 
-<!--
-(click)="showAlbum(currentPhoto.albumId)"
-routerLink="/detail/{{currentPhoto.albumId}}"
--->
+  <image-card *ngFor="let filteredPhoto of filteredPhotos; index as i;" [photoNumber]="(i + 1)"
+    [albumId]="filteredPhoto.albumId" [title]="filteredPhoto.title" [url]="filteredPhoto.thumbnailUrl"
+    class="image-card-list" [routerLink]="['/albums', filteredPhoto.albumId]"></image-card>
+
+</section>

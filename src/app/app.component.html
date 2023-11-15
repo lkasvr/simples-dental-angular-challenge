@@ -1,5 +1,6 @@
-<header><app-toolbar *ngIf="colorSchema" [colorSchema]="colorSchema" (toggleTheme)="onToggleTheme()"></app-toolbar>
+<header><app-toolbar *ngIf="colorSchema" [colorSchema]="colorSchema"
+    (toggleThemeEmitter)="onToggleTheme()"></app-toolbar>
 </header>
-<main class="main"></main>
+
 
 <router-outlet></router-outlet>
