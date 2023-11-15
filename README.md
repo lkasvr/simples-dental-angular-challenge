@@ -2,8 +2,6 @@
 
 Este projeto foi gerado utlizando [Angular CLI](https://github.com/angular/angular-cli) version 17.0.0.
 
-### Link do Deploy:
-
 </br>
 
 ## Layout da Landing Page
@@ -11,6 +9,10 @@ Este projeto foi gerado utlizando [Angular CLI](https://github.com/angular/angul
 ![Layout Galeria](./public/gallery-album.png)
 #
 ![Layout Cadastro Mobile](./public/cad-mobile.png)
+#
+![Layout Galeria Mobile](./public/gallery-mobile.png)
+#
+![Layout Autenticação](./public/login.png)
 
 ## Decisões Tomadas para Cumprimento dos Requisitos
 
