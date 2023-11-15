@@ -1,5 +1,5 @@
 <section class="gallery">
-  <span *ngIf="albumTitle"><b>Album:</b> {{albumTitle}}</span>
+  <span *ngIf="album[0]"><b>Album:</b> {{album[0].albumTitle}}</span>
   <mat-divider></mat-divider>
   <div class="image-card-wrapper">
     <image-card *ngFor="let photo of album; index as i; first as isFirst" [photoNumber]="i + 1"

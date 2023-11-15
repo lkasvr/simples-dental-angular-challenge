@@ -18,7 +18,6 @@ import { BehaviorSubject } from 'rxjs';
 export class AlbumComponent implements OnInit {
 
   private _album$ = new BehaviorSubject<FilteredPhoto[]>([]);;
-  albumTitle!: string;
 
   constructor(
     private _activatedRoute: ActivatedRoute,
@@ -28,11 +27,10 @@ export class AlbumComponent implements OnInit {
   ngOnInit() {
     const albumId = this._activatedRoute.snapshot.paramMap.get('id');
     this._albumsDataSharedService.filteredPhotos$.subscribe(photos => this._album$.next(photos.filter(photo => photo.albumId === Number(albumId))));
-    this.albumTitle = this.album[0].albumTitle;
   }
 
 
-  get album() {
+  get album(): FilteredPhoto[] {
     return this._album$.value;
   }
 

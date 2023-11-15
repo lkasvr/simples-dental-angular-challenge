@@ -6,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'form-login',
@@ -17,7 +18,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    RouterModule
   ],
   templateUrl: './login.form.component.html',
   styleUrl: './login.form.component.scss',
@@ -25,13 +27,13 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class LoginFormComponent {
   private authService = inject(AuthService);
-
   passwordHide = true;
-
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [ Validators.required, Validators.minLength(8)]),
   })
+
+  constructor(private router: Router) {}
 
   onSubmit() {
     const { email, password } = this.loginForm.value;
@@ -39,9 +41,11 @@ export class LoginFormComponent {
 
     if (!email || !password) return ;
 
-    const userSession = this.authService.signIn({ email, password });
+    const feedbackMessage = this.authService.signIn({ email, password });
 
-    console.log(userSession);
+    console.log(feedbackMessage);
+    if (typeof feedbackMessage === 'string') return alert(feedbackMessage);
+    this.router.navigate(['/albums']);
   }
 
   get email() {

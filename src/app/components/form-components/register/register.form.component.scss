@@ -1,18 +1,23 @@
 form {
   padding: 1rem;
 
-      .form-field {
-        width: 100%;
-        margin-bottom: 3rem;
-      }
+  .form-field {
+    width: 100%;
+    margin-bottom: 3rem;
+  }
 
-      .btn-container {
-        width: 100%;
-        display: flex;
-        justify-content: center;
+  .mat-mdc-form-field-error {
+    font-size: 0.6rem;
+    white-space: pre-line;
+  }
 
-        button {
-          width: 90%;
-        }
-      }
+  .btn-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    button {
+      width: 90%;
+    }
+  }
 }

@@ -7,10 +7,8 @@ import { AlbumComponent } from './pages/album/album.component';
 
 export const routes: Routes = [
   {
-    path: 'albums',
-    component: GalleryComponent,
-  },
-  { path: 'albums/:id', component: AlbumComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'login', component: LoginComponent, canActivate: [cantWhenAuthenticated] },
+    path: 'albums', title: 'Galeria', component: GalleryComponent, canActivate: [canActivateRoute] },
+  { path: 'albums/:id', title: 'Album', component: AlbumComponent, canActivate: [canActivateRoute] },
+  { path: '', title: 'Cadastro', component: RegisterComponent, canActivate: [cantWhenAuthenticated] },
+  { path: 'login', title: 'Entrar', component: LoginComponent, canActivate: [cantWhenAuthenticated] },
 ];

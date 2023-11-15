@@ -6,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { AuthService } from '../../../services/auth-service/auth-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'form-register',
@@ -20,7 +21,6 @@ export class RegisterFormComponent {
 
   passwordRegExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-])(?!.*(\d)\1{2,}).{8,}$/;
   passwordHide = true;
-
   registerForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl(
@@ -33,13 +33,17 @@ export class RegisterFormComponent {
     toConfirmePassword: new FormControl( '', [Validators.required])
   })
 
+  constructor(private router: Router) {}
+
   onSubmit() {
     const { email, password, toConfirmePassword } = this.registerForm.value;
     console.log({ email, password });
     if (toConfirmePassword !== password) return alert('As senhas devem corresponder.')
 
     if (email && password) {
-      console.log(this.authService.registerUser({ email, password }));
+      const feedbackMessage = this.authService.registerUser({ email, password });
+      if (typeof feedbackMessage === 'string') alert(feedbackMessage);
+      this.router.navigate(['/login']);
     };
   }
 
@@ -61,7 +65,7 @@ export class RegisterFormComponent {
     if (inputControl?.hasError('required')) return 'O campo não pode ser vazio';
     if (inputControl?.hasError('email')) return 'Email inválido';
     if (inputControl?.status === 'INVALID' && inputType === 'password')
-      return '*ao menos uma letra maíuscula e mínuscula\n*ao menos um número\*ao menos um caractere especial\n*Sequência de números não permitida (111)';
+      return '*ao menos uma letra maíuscula e mínuscula\n*ao menos um número\n*ao menos um caractere especial\n*Sequência de números não permitida (111)';
 
     return '';
   }
