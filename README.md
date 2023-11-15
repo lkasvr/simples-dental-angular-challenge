@@ -1,27 +1,55 @@
-# SimplesDentalChallenge
+# Simples Dental Front-End Challenge
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.0.
+Este projeto foi gerado utlizando [Angular CLI](https://github.com/angular/angular-cli) version 17.0.0.
 
-## Development server
+### Link do Deploy:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+</br>
 
-## Code scaffolding
+## Layout da Landing Page
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+![Layout Galeria](./public/gallery-album.png)
+#
+![Layout Cadastro Mobile](./public/cad-mobile.png)
 
-## Build
+## Decisões Tomadas para Cumprimento dos Requisitos
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Manipulação da lógica das animações via servidor next
 
-## Running unit tests
+  📌 Criar uma tela de autenticação com Login salvando no localStorage.
+   **Processo de tomada da decisão**: tela de autenticação e tela de registro, com dados de cadastro sendo persistido no localStorage, e dados de sessão autenticada persistida no sessionStorage. Foi feito dessa forma considerando a finalidade de cada tipo de recurso de armazenamento, sendo o ideal para um sessão logada o sessionStorage
+  
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+  📌 Mostrar os álbuns da rota: https://jsonplaceholder.typicode.com/albums
+   **Processo de tomada da decisão**: listagem tem sua visualização permitida somente após usuário se autenticar
 
-## Running end-to-end tests
+  📌 Mostrar 1 miniatura por álbum e que será a primeira foto de dentro do álbum.
+  **Processo de tomada da decisão**: na galeria, onde se exibe todos albums, sendo apenas 10 fotos por album exibidas a primeira foto é a capa do album.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-## Further help
+  📌 Ao clicar no álbum, mostrar as 10 primeiras fotos de cada álbum https://jsonplaceholder.typicode.com/photos
+  **Processo de tomada da decisão**: ao se clicar no album abre-se a página dedicada ao álbum, onde é visualizado somente o álbum selecionado e suas 10 fotos
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+</br>
+
+## Instruções de Execução do Projeto
+
+### **AMBIENTE DE DESENVOLVIMENTO**
+
+Primeiro, clone este reposiótio:
+
+```bash
+$ git clone git@github.com:lkasvr/simples-dental-angular-challenge.git
+```
+Depois, execute os comandos abaixo na raíz do projeto:
+
+```bash
+npm install
+```
+
+```bash
+ng serve
+```
+
+Navegue para `http://localhost:4200/`.
+
