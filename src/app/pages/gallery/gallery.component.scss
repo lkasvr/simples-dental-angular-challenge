@@ -1,8 +1,9 @@
 div.button-container {
+  padding-top: 1rem;
   width: 100%;
   display: flex;
   justify-content: center;
-  gap: 5rem;
+  gap: 6rem;
 }
 
 section.gallery {
@@ -18,7 +19,7 @@ section.gallery {
   .image-card-list {
     width: 16rem;
     height: 16rem;
-    padding: 4rem;
+    padding: 1rem;
 
     a {
       cursor: pointer;

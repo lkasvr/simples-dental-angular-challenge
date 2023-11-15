@@ -36,8 +36,8 @@ export class GalleryComponent implements OnInit {
 
   nextPhoto() {
     if (this.toPhoto < this._filteredPhotos.length - 1) {
-      this.fromPhoto += this._PHOTOS_QTY + 1;
-      this.toPhoto += this._PHOTOS_QTY + 1;
+      this.fromPhoto += this._PHOTOS_QTY;
+      this.toPhoto += this._PHOTOS_QTY;
     } else {
       this.fromPhoto = 0;
       this.toPhoto = this._PHOTOS_QTY;
@@ -46,11 +46,11 @@ export class GalleryComponent implements OnInit {
 
   prevPhoto() {
     if (this.fromPhoto === 0) {
-      this.toPhoto = this._filteredPhotos.length - 1;
-      this.fromPhoto = (this._filteredPhotos.length - 1) - this._PHOTOS_QTY;
+      this.toPhoto = this._filteredPhotos.length;
+      this.fromPhoto = (this._filteredPhotos.length) - this._PHOTOS_QTY;
     } else {
-      this.fromPhoto -= this._PHOTOS_QTY + 1;
-      this.toPhoto -= this._PHOTOS_QTY + 1;
+      this.fromPhoto -= this._PHOTOS_QTY;
+      this.toPhoto -= this._PHOTOS_QTY;
     }
 
     if (this.fromPhoto < 0) this.fromPhoto = 0;

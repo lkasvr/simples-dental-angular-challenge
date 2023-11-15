@@ -18,7 +18,7 @@ import { BehaviorSubject } from 'rxjs';
 export class AlbumComponent implements OnInit {
 
   private _album$ = new BehaviorSubject<FilteredPhoto[]>([]);;
-  albumTitle: string = '';
+  albumTitle!: string;
 
   constructor(
     private _activatedRoute: ActivatedRoute,

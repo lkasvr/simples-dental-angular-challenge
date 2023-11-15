@@ -51,10 +51,6 @@ export class AlbumsDataSharedService {
     return this._filteredPhotos$.value;
   }
 
-  // set filteredPhotos(value: FilteredPhoto[]) {
-  //   this._filteredPhotos$.next(value);
-  // }
-
   get filteredPhotos$(): Observable<FilteredPhoto[]> {
     return this._filteredPhotos$.asObservable();
   }
@@ -63,21 +59,9 @@ export class AlbumsDataSharedService {
     return this._photos$.value;
   }
 
-  // set photos(value: Photo[]) {
-  //   this._photos$.next(value);
-  // }
-
-  // get photos$(): Observable<Photo[]> {
-  //   return this._photos$.asObservable();
-  // }
-
   get albums() {
     return this._albums$.value;
   }
-
-  // set albums(value: Album[]) {
-  //   this._albums$.next(value);
-  // }
 
   get albums$(): Observable<Album[]> {
     return this._albums$.asObservable();
